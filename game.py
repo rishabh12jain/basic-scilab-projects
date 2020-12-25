@@ -64,7 +64,10 @@ def j():
     key='j'
     return key
     
-    
+
+
+
+
     
 def ball_func(x):
     if x==0:
@@ -72,20 +75,6 @@ def ball_func(x):
         ball.setx(i+2)
         
         
-        
-def ball_continue(arr):
-    if arr[0]==1:                           ##loop creating problem
-        if arr[1]==1:
-            
-            for j in range(277):
-                #all.setx(i-2)
-                ball.forward(2)
-        if arr[2]==1:
-       
-            for j in range(1,285):
-                #i=ball.xcor()
-    #                ball.setx(i+2)
-                ball.forward(2)
 def start():
     
       x=ball.xcor()
@@ -112,7 +101,7 @@ right_flange=0
 
 
 def turn_condition():
-      x=ball.xcor()
+      x=int(ball.xcor())
       y=ball.ycor()
       x_block2=block2.xcor()
       y_block2=block2.ycor()
@@ -122,15 +111,15 @@ def turn_condition():
       left_flange=0
       right_flange=0
     
-      if (ball.xcor()+19==x_block2 and y==y_block1):
+      if (ball.xcor()+19==x_block2): #and y==y_block2):
           turn=1
           left_flange=1
-          right_flange=0
-      elif (ball.ycor()-19==x_block1 and y==y_block1):
+          right_flange=2
+      elif (x-20==x_block1): #and y==y_block1):
           turn=1
           
           left_flange=1
-          right_flange=0
+          right_flange=2
       else:    
           turn=0
       arr=[turn,left_flange,right_flange]
@@ -144,8 +133,10 @@ while True:
     screen.onkey(s,"s")
     screen.onkey(u,"u")
     screen.onkey(j,"j")
+    
     turn_condition()
     arr=turn_condition()
+    #ball_continue(arr)
     if arr[0]==1:
         if arr[1]==1:
             ball.left(175)
@@ -153,14 +144,27 @@ while True:
             ball.right(175)
         x=1
         y=1
-    ball_continue(arr)
+    
     if y==0:
         x,y=start()
         ball_func(x) 
+    
+    if arr[1]!=0 and arr[2]!=0:
+        brr=[]
+        brr=arr[:]
+        print('brr:',brr)
+    try: 
+        if (brr[1]==1 and brr[2]==2) or (brr[1]==2 and brr[2]==1):
+            ball.forward(2)
+            print('done')
+    except:
+        print('ok')
         
+    
+   
     
     screen.listen()
     screen.update()
-    print(block1.xcor(),ball.xcor(),ball.ycor(),block1.ycor(),left_flange,right_flange)
-    
+    print(block1.xcor(),ball.xcor(),ball.ycor(),block2.xcor(),left_flange,right_flange)
+    print(arr[0],arr[1],arr[2])
 done()
