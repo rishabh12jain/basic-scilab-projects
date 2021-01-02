@@ -28,7 +28,8 @@ x=ball.xcor()
 y=ball.ycor()
 x_block2=block2.xcor()
 y_block2=block2.ycor()
-    
+ball.dx=2
+ball.dy=2
 #========================================================
 #func
 key=0
@@ -155,7 +156,8 @@ while True:
         print('brr:',brr)
     try: 
         if (brr[1]==1 and brr[2]==2) or (brr[1]==2 and brr[2]==1):
-            ball.forward(2)
+            ball.setx(ball.xcor()+ball.dx)
+            ball.sety(ball.ycor()+ball.dy)
             print('done')
     except:
         print('ok')
