@@ -9,16 +9,16 @@ block1.shape('square')
 block1.color('white')
 block1.speed(100)
 block1.penup()
-block1.setx(-284)
-block1.shapesize(6,1)
+block1.setx(-300)
+block1.shapesize(1,1)
 #======================================================
 block2=Turtle()
 block2.shape('square')
 block2.speed(100)
 block2.color('white')
 block2.penup()
-block2.setx(284)
-block2.shapesize(6, 1)
+block2.setx(300)
+block2.shapesize(1, 1)
 #=======================================================
 ball=Turtle()
 ball.penup()
@@ -28,8 +28,8 @@ x=ball.xcor()
 y=ball.ycor()
 x_block2=block2.xcor()
 y_block2=block2.ycor()
-ball.dx=2
-ball.dy=2
+ball.dx=3
+ball.dy=3
 #========================================================
 #func
 key=0
@@ -71,18 +71,37 @@ def j():
     
 
 def border_checking():
-      if ball.ycor()>230:
+      if ball.ycor()>260:
           ball.dy=ball.dy*(-1)
-      if ball.ycor()<-230:
+      if ball.ycor()<-260:
           ball.dy=ball.dy*(-1)
      
-      if (ball.xcor()==block2.xcor()) and ball.ycor()==block2.ycor():
+      if ball.xcor()>248 and ball.ycor()==block2.ycor():
          ball.dx=ball.dx*(-1)
          
          
-      if (ball.xcor()==block1.xcor() and ball.ycor()+4==block1.ycor()):
+      if (ball.xcor()<-248 and ball.ycor()==block1.ycor()):
          ball.dx=ball.dx*(-1)
 
+
+
+
+
+def new_ball():
+    if ball.xcor()>300 or ball.xcor()<-300:
+        ball.speed(100)
+        ball.setx(0)
+        ball.sety(0)
+        ball.speed(3)
+        
+    
+    
+    
+    
+    
+    
+    
+    
 y=0
 #game loop
 while True:
@@ -93,9 +112,10 @@ while True:
     ball.setx(ball.xcor()+ball.dx)
     ball.sety(ball.ycor()+ball.dy)
     border_checking()
+    new_ball()
     
     screen.listen()
     screen.update()
-    print(ball.xcor(),ball.ycor(),block1.xcor(),block1.ycor())
+    print(ball.xcor(),ball.ycor(),block2.ycor(),block1.ycor())
    
 done()
