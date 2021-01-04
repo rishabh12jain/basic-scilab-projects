@@ -10,7 +10,7 @@ block1.color('white')
 block1.speed(100)
 block1.penup()
 block1.setx(-300)
-block1.shapesize(1,1)
+block1.shapesize(5,1)
 #======================================================
 block2=Turtle()
 block2.shape('square')
@@ -18,7 +18,7 @@ block2.speed(100)
 block2.color('white')
 block2.penup()
 block2.setx(300)
-block2.shapesize(1, 1)
+block2.shapesize(5, 1)
 #=======================================================
 ball=Turtle()
 ball.penup()
@@ -76,11 +76,11 @@ def border_checking():
       if ball.ycor()<-260:
           ball.dy=ball.dy*(-1)
      
-      if ball.xcor()>248 and ball.ycor()==block2.ycor():
+      if (ball.xcor()>250 and ball.xcor()<265) and (ball.ycor()<block2.ycor()+50 and ball.ycor()>block2.ycor()-50):
          ball.dx=ball.dx*(-1)
          
          
-      if (ball.xcor()<-248 and ball.ycor()==block1.ycor()):
+      if (ball.xcor()<-248 and (ball.ycor()<block1.ycor()+30 and ball.ycor()>block1.ycor()-30)):
          ball.dx=ball.dx*(-1)
 
 
@@ -116,6 +116,6 @@ while True:
     
     screen.listen()
     screen.update()
-    print(ball.xcor(),ball.ycor(),block2.ycor(),block1.ycor())
+    print(ball.xcor(),ball.ycor(),block2.ycor()+30,block2.ycor()-30,block1.ycor()+30,block1.ycor()-30)
    
 done()
