@@ -4,6 +4,18 @@ screen=Screen()
 screen.bgcolor('black')
 screensize(400,400)
 #=======================================================
+rectan=Turtle()
+#rectan.shape('square')
+rectan.color('white')
+rectan.penup()
+rectan.speed(1000)
+rectan.sety(240)
+#rectan.shapesize(2,8)
+
+
+
+
+#=======================================================
 block1=Turtle()
 block1.shape('square')
 block1.color('white')
@@ -77,11 +89,11 @@ def border_checking():
       if ball.ycor()<-260:
           ball.dy=ball.dy*(-1)
      
-      if (ball.xcor()>290 and ball.xcor()<310) and (ball.ycor()<block2.ycor()+50 and ball.ycor()>block2.ycor()-50):
+      if (ball.xcor()>290 and ball.xcor()<315) and (ball.ycor()<block2.ycor()+60 and ball.ycor()>block2.ycor()-60):
          ball.dx=ball.dx*(-1)
          
          
-      if (ball.xcor()<(-290) and ball.xcor()>(-310) and (ball.ycor()<block1.ycor()+50 and ball.ycor()>block1.ycor()-50)):
+      if (ball.xcor()<(-290) and ball.xcor()>(-315) and (ball.ycor()<block1.ycor()+60 and ball.ycor()>block1.ycor()-60)):
          ball.dx=ball.dx*(-1)
 
 
@@ -89,20 +101,21 @@ def border_checking():
 
 
 def new_ball():
+    num=0
     if ball.xcor()>300 or ball.xcor()<-300:
         ball.speed(100)
         ball.setx(0)
         ball.sety(0)
         ball.speed(10)
-        
+        num=1    
+    return num
     
     
     
     
     
     
-    
-    
+game_lose=0  
 y=0
 #game loop
 while True:
@@ -113,10 +126,15 @@ while True:
     ball.setx(ball.xcor()+ball.dx)
     ball.sety(ball.ycor()+ball.dy)
     border_checking()
-    new_ball()
-    
+    num=new_ball()
+    game_lose=game_lose+num
+    if game_lose==3:
+        print('game finished')
+        break
+    rectan.write("SCORE = ",game_lose,align="center",font=("courier",24,"normal"))
     screen.listen()
     screen.update()
-    print(block2.xcor(),block1.xcor(),block2.ycor()+30,block2.ycor()-30,block1.ycor()+30,block1.ycor()-30)
+    
+    #print(block2.xcor(),block1.xcor(),block2.ycor()+30,block2.ycor()-30,block1.ycor()+30,block1.ycor()-30)
    
 done()
