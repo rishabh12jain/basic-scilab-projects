@@ -30,6 +30,7 @@ x_block2=block2.xcor()
 y_block2=block2.ycor()
 ball.dx=3
 ball.dy=3
+
 #========================================================
 #func
 key=0
@@ -40,7 +41,7 @@ right_flange=0
 def w():
     block1.penup()
     y=block1.ycor()
-    y=y+24
+    y=y+20
     block1.sety(y)
     key='w'
     return key
@@ -48,7 +49,7 @@ def w():
 def s():
     block1.penup()
     s=block1.ycor()
-    s=s-24
+    s=s-20
     block1.sety(s)
     key='s'
     return key
@@ -76,11 +77,11 @@ def border_checking():
       if ball.ycor()<-260:
           ball.dy=ball.dy*(-1)
      
-      if (ball.xcor()>250 and ball.xcor()<265) and (ball.ycor()<block2.ycor()+50 and ball.ycor()>block2.ycor()-50):
+      if (ball.xcor()>290 and ball.xcor()<310) and (ball.ycor()<block2.ycor()+50 and ball.ycor()>block2.ycor()-50):
          ball.dx=ball.dx*(-1)
          
          
-      if (ball.xcor()<-248 and (ball.ycor()<block1.ycor()+30 and ball.ycor()>block1.ycor()-30)):
+      if (ball.xcor()<(-290) and ball.xcor()>(-310) and (ball.ycor()<block1.ycor()+50 and ball.ycor()>block1.ycor()-50)):
          ball.dx=ball.dx*(-1)
 
 
@@ -92,7 +93,7 @@ def new_ball():
         ball.speed(100)
         ball.setx(0)
         ball.sety(0)
-        ball.speed(3)
+        ball.speed(10)
         
     
     
@@ -116,6 +117,6 @@ while True:
     
     screen.listen()
     screen.update()
-    print(ball.xcor(),ball.ycor(),block2.ycor()+30,block2.ycor()-30,block1.ycor()+30,block1.ycor()-30)
+    print(block2.xcor(),block1.xcor(),block2.ycor()+30,block2.ycor()-30,block1.ycor()+30,block1.ycor()-30)
    
 done()
